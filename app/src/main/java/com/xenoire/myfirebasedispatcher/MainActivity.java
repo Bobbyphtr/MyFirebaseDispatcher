@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL) //waktu kapan akan dijalankan lagi jika gagal
                 .setConstraints(
                         //Constraint.ON_UNMETERED_NETWORK, //Berjalan untuk koneksi yang unmetered (Wifi)
-                        //Constraint.DEVICE_CHARGING,     //Hanya berkalan ketika device di charge
+                        Constraint.DEVICE_CHARGING,     //Hanya berkalan ketika device di charge
                         Constraint.ON_ANY_NETWORK      // Berjalan saat ada koneksi internet
                         //Constraint.DEVICE_IDLE          //Berjalan saat device dalam kondisi idle
                 )

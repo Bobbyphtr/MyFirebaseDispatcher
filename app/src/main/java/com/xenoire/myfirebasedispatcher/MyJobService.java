@@ -72,7 +72,7 @@ public class MyJobService extends JobService {
                     String city = obj.getString("name");
                     String title = city + " Current Weather";
                     String message = currentWeather + ", " + description + " with "+temperature+" C";
-                    int notifId = 10;
+                    int notifId = 105;
                     showNotification(getApplicationContext(), title, message, notifId);
                     jobFinished(job, false);
                 } catch (JSONException e) {
@@ -94,6 +94,9 @@ public class MyJobService extends JobService {
             NotificationChannel channel = new NotificationChannel(NOTIFICATION_ID, "Weather Firebase Notification", NotificationManager.IMPORTANCE_DEFAULT);
             channel.setVibrationPattern(new long[]{0, 1000});
             channel.enableVibration(true);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
         }
          NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NOTIFICATION_ID)
                  .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
@@ -101,6 +104,8 @@ public class MyJobService extends JobService {
                  .setContentTitle(title)
                  .setContentText(msg)
                  .setColor(ContextCompat.getColor(context, android.R.color.black));
-        notificationManager.notify(notifId, builder.build());
+         if (notificationManager != null) {
+             notificationManager.notify(notifId, builder.build());
+         }
      }
 }
